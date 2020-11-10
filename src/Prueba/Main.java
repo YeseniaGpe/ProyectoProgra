@@ -7,7 +7,7 @@ import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args) {
-
+        ConexionBD conectar = new ConexionBD();
         // Temporal -- Conexion a Base de Datos.
         ConexionBD bdConectar = new ConexionBD();
         Connection conn = bdConectar.getConn();
@@ -18,6 +18,7 @@ public class Main {
 
         Vista.Ventana ventanaPrincipal = new Vista.Ventana();
         ventanaPrincipal.setVisible(true);
+
 
     }
 }
