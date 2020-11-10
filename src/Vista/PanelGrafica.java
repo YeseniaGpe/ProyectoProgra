@@ -1,4 +1,11 @@
 package Vista;
 
-public class PanelGrafica {
+import javax.swing.*;
+
+public class PanelGrafica extends JPanel{
+    PanelGrafica(){
+
+    }
+
+
 }
