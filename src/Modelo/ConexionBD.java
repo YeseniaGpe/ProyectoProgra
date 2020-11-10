@@ -26,6 +26,7 @@ public class ConexionBD {
     }
 
     public static Connection getConn() {
+        System.out.println(conn);
         return conn;
     }
 
