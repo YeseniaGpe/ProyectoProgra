@@ -19,12 +19,16 @@ public class PanelControl extends JPanel {
     public JRadioButton edad;
     public JButton botonMostrarGrafico;
 
-    PanelControl() {
+    public PanelControl() {
 
         JPanel panelVacio =new JPanel();
         panelVacio.setPreferredSize(new Dimension(350,20));
+
         botonMostrarGrafico = new JButton("Mostrar gráfico");
-        botonMostrarGrafico.setPreferredSize(new Dimension(200,20));
+        botonMostrarGrafico.setPreferredSize(new Dimension(300,25));
+
+        JPanel panelVacioDos =new JPanel();
+        panelVacioDos.setPreferredSize(new Dimension(350,20));
 
         segundoSubPanel = new JPanel();
         segundoSubPanel.setPreferredSize(new Dimension(350,300));
@@ -67,7 +71,7 @@ public class PanelControl extends JPanel {
         grupoPadecimiento.add(obesidad);
         grupoPadecimiento.add(edad);
 
-        segundoSubPanel.setLayout(new GridLayout(8,2));
+        segundoSubPanel.setLayout(new GridLayout(9,2));
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(etiquetaSexo);
@@ -83,10 +87,13 @@ public class PanelControl extends JPanel {
         segundoSubPanel.add(hipertension);
         segundoSubPanel.add(obesidad);
         segundoSubPanel.add(edad);
+        segundoSubPanel.add(new JLabel());
+        segundoSubPanel.add(new JLabel());
 
         this.add(panelVacio,BorderLayout.NORTH);
         this.add(elegirEstado);
         this.add(segundoSubPanel,BorderLayout.CENTER);
         this.add(botonMostrarGrafico);
+        this.add(panelVacioDos);
     }
 }

@@ -7,7 +7,7 @@ public class Ventana extends JFrame {
 
     public Ventana() {
         super("COVID-19 en México");
-        setSize(800,430);
+        setSize(900,430);
         setResizable(true);
         setLocation(400,200);
 
