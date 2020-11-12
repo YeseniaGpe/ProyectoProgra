@@ -2,7 +2,6 @@ package Vista;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentListener;
 
 public class PanelControl extends JPanel {
     public JPanel segundoSubPanel;
@@ -18,11 +17,14 @@ public class PanelControl extends JPanel {
     public JRadioButton hipertension;
     public JRadioButton obesidad;
     public JRadioButton edad;
+    public JButton botonMostrarGrafico;
 
     PanelControl() {
 
         JPanel panelVacio =new JPanel();
         panelVacio.setPreferredSize(new Dimension(350,20));
+        botonMostrarGrafico = new JButton("Mostrar gráfico");
+        botonMostrarGrafico.setPreferredSize(new Dimension(200,20));
 
         segundoSubPanel = new JPanel();
         segundoSubPanel.setPreferredSize(new Dimension(350,300));
@@ -83,7 +85,8 @@ public class PanelControl extends JPanel {
         segundoSubPanel.add(edad);
 
         this.add(panelVacio,BorderLayout.NORTH);
-        this.add(elegirEstado,BorderLayout.CENTER);
-        this.add(segundoSubPanel,BorderLayout.SOUTH);
+        this.add(elegirEstado);
+        this.add(segundoSubPanel,BorderLayout.CENTER);
+        this.add(botonMostrarGrafico);
     }
 }
