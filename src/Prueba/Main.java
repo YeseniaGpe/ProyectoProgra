@@ -1,19 +1,21 @@
 package Prueba;
 
+import Controlador.EjecutarEventos;
 import Modelo.ConexionBD;
 import Modelo.QueryData;
+import Vista.PanelControl;
 import Vista.Ventana;
 
 import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args) {
-        QueryData queryData = new QueryData();
-        queryData.numberQuery("9","1","obesidad");
+        PanelControl ventana = new PanelControl();
 
-        queryData.arrayQuery("9","1");
 
         Vista.Ventana ventanaPrincipal = new Vista.Ventana();
         ventanaPrincipal.setVisible(true);
+
+        EjecutarEventos ejecutaEvento = new EjecutarEventos(ventanaPrincipal.panelIzquierdo);
     }
 }

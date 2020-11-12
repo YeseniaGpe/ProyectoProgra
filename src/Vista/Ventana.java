@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Ventana extends JFrame {
+    public PanelControl panelIzquierdo;
 
     public Ventana() {
         super("COVID-19 en México");
@@ -11,7 +12,7 @@ public class Ventana extends JFrame {
         setResizable(true);
         setLocation(400,200);
 
-        PanelControl panelIzquierdo  = new PanelControl();
+        panelIzquierdo  = new PanelControl();
         //PanelGrafica grafico = new PanelGrafica();
         JPanel panelDerecho = new JPanel();
 
