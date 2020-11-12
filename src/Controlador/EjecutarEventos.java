@@ -15,7 +15,7 @@ public class EjecutarEventos implements ActionListener{
         this.ventana = ventana;
         this.ventana.  botonMostrarGrafico.addActionListener(this);
 
-        System.out.println("Constructor EjecutarEventos");
+        System.out.println("Hola Yesenia");
     }
 
     public void actionPerformed(ActionEvent e){
