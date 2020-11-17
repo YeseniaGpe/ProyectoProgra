@@ -11,14 +11,14 @@ public class QueryData {
     public QueryData(){
     }
 
-    public String numberQuery(String entidad, String sexo, String padecimiento){
+    public String numberQuery(int entidad, int sexo, String filtro){
         String numeroQ = "0";
 
         try{
             conectarBD = new ConexionBD();
             Connection conn = conectarBD.getConn();
             String queryDatosCovid = "select count(*) from datoscovid where entidad = "
-                    + entidad + " and sexo = " + sexo +" and "+ padecimiento+" = 1";
+                    + entidad + " and sexo = " + sexo +" and "+ filtro+" = 1";
 
             PreparedStatement qStatement = conn.prepareStatement(queryDatosCovid);
             ResultSet rs = qStatement.executeQuery();
@@ -38,7 +38,7 @@ public class QueryData {
         return numeroQ;
     }
 
-    public void arrayQuery(String entidad, String sexo){
+    public void arrayQuery(int entidad, int sexo){
 
         try{
             conectarBD = new ConexionBD();
