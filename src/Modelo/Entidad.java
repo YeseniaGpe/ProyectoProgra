@@ -8,9 +8,14 @@ public class Entidad {
 
     public Entidad(){
         hmEntidades = new HashMap<>();
+     /*
             hmEntidades.put(1,"Jalisco");
             hmEntidades.put(2,"Merida");
             hmEntidades.put(3,"CDMX");
             hmEntidades.put(4,"Oaxaca");
+
+      */
     }
+
+
 }
