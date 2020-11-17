@@ -37,8 +37,8 @@ public class EjecutarEventos implements ActionListener{
         else if(e.getSource() == ventana.elegirEstado) {
             try {
                 ventana.elegirEstado.removeAllItems();
-                for(int contador=0; contador<listaEstados.listaEntidades.size;contador++) {
-                    ventana.elegirEstado.addItem(listaEstados.listaEntidades.get(i).getListaEntidades());
+                for(int contador=0; contador<listaEstados.listaEntidades.size();contador++) {
+                    ventana.elegirEstado.addItem(listaEstados.listaEntidades.get(contador).getListaEntidades());
                 }
             }catch (Exception exCombo) {
                 System.out.println("Error al leer los estados desde la base de datos");
