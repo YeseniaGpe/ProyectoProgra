@@ -18,6 +18,8 @@ public class EjecutarEventos implements ActionListener{
     public void actionPerformed(ActionEvent e){
         //System.out.println("Boton presionado");
         //System.out.println(e.getSource());
+        int entidad = 0, sexo= 0;
+        String filtro="Jalisco";
 
         if (e.getSource()== ventana.botonMostrarGrafico){
             try {
@@ -26,8 +28,8 @@ public class EjecutarEventos implements ActionListener{
                 System.out.println(ventana.sexoMasculino.isSelected());
                 System.out.println("Inicia Ejecutar Evento");
                 QueryData queryData = new QueryData();
-                queryData.numberQuery("9", "1", "obesidad");
-                queryData.arrayQuery("9", "1");
+                queryData.numberQuery(entidad, sexo, filtro);
+                queryData.arrayQuery(entidad,sexo);
             }catch (Exception ex){
                 System.out.println("Error Ejecutar Evento");
             }
