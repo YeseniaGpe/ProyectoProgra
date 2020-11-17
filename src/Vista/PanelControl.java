@@ -1,5 +1,7 @@
 package Vista;
 
+import Controlador.EjecutarEventos;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -25,7 +27,7 @@ public class PanelControl extends JPanel {
         panelVacio.setPreferredSize(new Dimension(350,20));
 
         botonMostrarGrafico = new JButton("Mostrar gráfico");
-        botonMostrarGrafico.setPreferredSize(new Dimension(300,25));
+        botonMostrarGrafico.setPreferredSize(new Dimension(300,20));
 
         JPanel panelVacioDos =new JPanel();
         panelVacioDos.setPreferredSize(new Dimension(350,20));

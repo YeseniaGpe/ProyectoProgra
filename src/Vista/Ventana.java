@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class Ventana extends JFrame {
     public PanelControl panelIzquierdo;
+    public PanelGrafica graficoBarras;
+
 
     public Ventana() {
         super("COVID-19 en México");
@@ -13,14 +15,11 @@ public class Ventana extends JFrame {
         setLocation(400,200);
 
         panelIzquierdo  = new PanelControl();
-        //PanelGrafica grafico = new PanelGrafica();
-        JPanel panelDerecho = new JPanel();
-
-
+        graficoBarras = new PanelGrafica();
 
         setLayout(new GridLayout(1,2));
 
         this.add(panelIzquierdo);
-       this.add(panelDerecho);
+        this.add(graficoBarras.createDataset());
     }
 }
