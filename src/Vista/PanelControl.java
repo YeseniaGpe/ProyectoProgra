@@ -1,6 +1,7 @@
 package Vista;
 
 import Controlador.EjecutarEventos;
+import Modelo.Entidad;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,10 @@ public class PanelControl extends JPanel {
     public JRadioButton edad;
     public JButton botonMostrarGrafico;
 
+
     public PanelControl() {
+
+        Entidad listaEstados = new Entidad();
 
         JPanel panelVacio =new JPanel();
         panelVacio.setPreferredSize(new Dimension(350,20));
@@ -37,6 +41,16 @@ public class PanelControl extends JPanel {
 
         elegirEstado = new JComboBox<String>();
         elegirEstado.setPreferredSize(new Dimension(350,20));
+        System.out.println("Entró al comboBox");
+        try {
+            elegirEstado.removeAllItems();
+            for(int contador=0; contador<listaEstados.hmEntidades.size();contador++) {
+                elegirEstado.addItem(listaEstados.hmEntidades.get(contador));
+            }
+        }catch (Exception exCombo) {
+            System.out.println("Error al leer los estados desde la base de datos");
+        }
+
 
         Font fuenteTitulos = new Font("Arial", 1, 20);
         Font fuenteOpciones = new Font("Arial",4,14);
