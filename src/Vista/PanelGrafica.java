@@ -18,7 +18,8 @@ public class PanelGrafica {
     }
 
     public JPanel createDataset() {
-        final String serie = "Series 1";;
+        final String serie = "Series 1";
+        ;
         final String speed = "Speed";
         final String speed2 = "Speed 2";
         final String speed3 = "Speed 3";
@@ -32,14 +33,8 @@ public class PanelGrafica {
                 "Score", dataset, PlotOrientation.VERTICAL, true, true, false);
         ChartUtilities.applyCurrentTheme(grafico);
         ChartPanel chartPanel = new ChartPanel(grafico);
-       // chartPanel.setPreferredSize(new Dimension(400,430));
+        // chartPanel.setPreferredSize(new Dimension(400,430));
         return chartPanel;
     }
-
-   /*
-        BarRenderer3D chart = new BarRenderer3D("Car Usage Statistics", "Which car do you like?");
-        chart.pack( );
-        RefineryUtilities.centerFrameOnScreen( chart );
-        chart.setVisible( true ); */
 
 }
