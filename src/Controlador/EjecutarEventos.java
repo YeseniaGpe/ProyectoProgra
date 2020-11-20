@@ -43,19 +43,21 @@ public class EjecutarEventos implements ActionListener{
                         filtroElegido = botonAyudaFiltro.getText();
                     }
                 }
-
-                System.out.println(estadoElegido);
-                System.out.println(sexoElegido);
-                System.out.println(filtroElegido);
-
                 QueryData queryData = new QueryData();
 
                 if(filtroElegido != "Edad") {
+                    if(filtroElegido=="Hipertensión") {
+                        filtroElegido = "Hipertension";
+                    }
                     queryData.numberQuery(estadoElegido, sexoElegido, filtroElegido);
                 }
                 else {
                     queryData.arrayQuery(estadoElegido,sexoElegido);
                 }
+
+                System.out.println(estadoElegido);
+                System.out.println(sexoElegido);
+                System.out.println(filtroElegido);
 
 
             } catch (Exception exce) {

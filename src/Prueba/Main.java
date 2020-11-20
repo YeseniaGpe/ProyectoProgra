@@ -9,6 +9,5 @@ public class Main {
 
         //Agrega accion de mostrar grafica.
         EjecutarEventos ejecutaEvento = new EjecutarEventos(ventanaPrincipal.panelIzquierdo);
-        System.out.println("Hola mundo    ");
     }
 }
