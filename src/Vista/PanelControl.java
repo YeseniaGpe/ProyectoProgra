@@ -1,8 +1,6 @@
 package Vista;
 
-import Controlador.EjecutarEventos;
 import Modelo.Entidad;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,7 +22,6 @@ public class PanelControl extends JPanel {
 
 
     public PanelControl() {
-
         Entidad listaEstados = new Entidad();
 
         JPanel panelVacio =new JPanel();
@@ -39,7 +36,7 @@ public class PanelControl extends JPanel {
         segundoSubPanel = new JPanel();
         segundoSubPanel.setPreferredSize(new Dimension(350,300));
 
-        elegirEstado = new JComboBox<String>();
+        elegirEstado = new JComboBox<>();
         elegirEstado.setPreferredSize(new Dimension(350,20));
         System.out.println("Entró al comboBox");
         try {

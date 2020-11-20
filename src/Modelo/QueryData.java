@@ -6,19 +6,34 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 
 public class QueryData {
-    ConexionBD conectarBD;
+    ConexionBD conectarBD = new ConexionBD();
 
     public QueryData(){
     }
 
-    public String numberQuery(int entidad, int sexo, String filtro){
+    public void numberQuery(String entidad, int sexo, String filtro){
         String numeroQ = "0";
+
+        System.out.println("Entidad: "+entidad);
+        System.out.println("Sexo: "+ sexo);
+        System.out.println("filtro: "+ filtro);
+
+        int claveEntidad=0;
+
+        for(int i=0;i<Entidad.hmEntidades.size();i++) {
+            if(Entidad.hmEntidades.get(i)==entidad){
+                System.out.println(Entidad.hmEntidades.get(i));
+                claveEntidad=i+1;
+            }
+        }
 
         try{
             conectarBD = new ConexionBD();
             Connection conn = conectarBD.getConn();
             String queryDatosCovid = "select count(*) from datoscovid where entidad = "
-                    + entidad + " and sexo = " + sexo +" and "+ filtro+" = 1";
+                    + claveEntidad + " and sexo = " + sexo +" and "+ filtro+" = 1";
+
+            System.out.println(queryDatosCovid);
 
             PreparedStatement qStatement = conn.prepareStatement(queryDatosCovid);
             ResultSet rs = qStatement.executeQuery();
@@ -35,10 +50,10 @@ public class QueryData {
             conectarBD.DesconexionBD();
         }
 
-        return numeroQ;
+        //return numeroQ;
     }
 
-    public void arrayQuery(int entidad, int sexo){
+    public void arrayQuery(String entidad, int sexo){
 
         try{
             conectarBD = new ConexionBD();
