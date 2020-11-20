@@ -14,7 +14,7 @@ public class Entidad {
 
         try {
             conexionBD = new ConexionBD();
-            Connection conn = conexionBD.getConn();
+            Connection conn = conexionBD.getConn();//ConexionBD.getConn();//conexionBD.getConn();
             String queryEntidad = "SELECT Entidad_Clave, Entidad_Nombre FROM entidadcat";
 
             PreparedStatement qStatement = conn.prepareStatement(queryEntidad);

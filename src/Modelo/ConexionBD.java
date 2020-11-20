@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConexionBD {
-    private static Connection conn;
-    private static final String driver = "com.mysql.jdbc.Driver";
-    private static final String user = "root";
-    private static final String password = "";
-    private static final String url = "jdbc:mysql://localhost:3306/pruebapoo";
+    private Connection conn;
 
     public ConexionBD(){
+        String driver = "com.mysql.jdbc.Driver";
+        String user = "root";
+        String password = "";
+        String url = "jdbc:mysql://localhost:3306/pruebapoo";
         conn = null;
 
         try{
@@ -25,7 +25,7 @@ public class ConexionBD {
         }
     }
 
-    public static Connection getConn() {
+    public Connection getConn() {
         return conn;
     }
 
