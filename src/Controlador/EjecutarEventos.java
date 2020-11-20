@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EjecutarEventos implements ActionListener{
-    PanelControl ventana = new PanelControl();
+    PanelControl ventana;// = new PanelControl();
 
     public EjecutarEventos(PanelControl ventana){
         this.ventana = ventana;

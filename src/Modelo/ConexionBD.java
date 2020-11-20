@@ -21,17 +21,16 @@ public class ConexionBD {
                 System.out.println("Conexión exitosa");
             }
         }catch (Exception e){
-            System.out.println("Falló conexión");
+            System.out.println("Abre conexión");
         }
     }
 
     public static Connection getConn() {
-        System.out.println(conn);
         return conn;
     }
 
     public void DesconexionBD(){
         conn = null;
-        System.out.println("Terminó conexión");
+        System.out.println("Cierra conexión");
     }
 }
