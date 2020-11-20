@@ -20,7 +20,9 @@ public class Entidad {
             PreparedStatement qStatement = conn.prepareStatement(queryEntidad);
             ResultSet rs = qStatement.executeQuery();
 
-            int i = 0;
+            int i = 1;
+
+            hmEntidades.put(0,"ENTIDAD");
 
             while(rs.next()){
                 hmEntidades.put(i,rs.getString(2));

@@ -20,10 +20,10 @@ public class QueryData {
 
         int claveEntidad=0;
 
-        for(int i=0;i<Entidad.hmEntidades.size();i++) {
+        for(int i=1;i<Entidad.hmEntidades.size();i++) {
             if(Entidad.hmEntidades.get(i)==entidad){
                 System.out.println(Entidad.hmEntidades.get(i));
-                claveEntidad=i+1;
+                claveEntidad=i;
             }
         }
 
