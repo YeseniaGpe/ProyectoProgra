@@ -3,8 +3,10 @@ package Controlador;
 import Modelo.QueryData;
 import Vista.PanelControl;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
 public class EjecutarEventos implements ActionListener{
     PanelControl ventana;// = new PanelControl();
@@ -16,24 +18,50 @@ public class EjecutarEventos implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        //System.out.println("Boton presionado");
-        //System.out.println(e.getSource());
-        int entidad = 0, sexo= 0;
-        String filtro="Jalisco";
-
-        if (e.getSource()== ventana.botonMostrarGrafico){
+        if(e.getSource()== ventana.botonMostrarGrafico) {
+            String estadoElegido = null;
+            int sexoElegido = 0;
+            String filtroElegido = null;
             try {
-                System.out.println(ventana.elegirEstado.getSelectedItem());
-                System.out.println(ventana.sexoFemenino.isSelected());
-                System.out.println(ventana.sexoMasculino.isSelected());
-                System.out.println("Inicia Ejecutar Evento");
-                QueryData queryData = new QueryData();
-                queryData.numberQuery(entidad, sexo, filtro);
-                queryData.arrayQuery(entidad,sexo);
-            }catch (Exception ex){
-                System.out.println("Error Ejecutar Evento");
-            }
+                estadoElegido = ventana.elegirEstado.getSelectedItem().toString();
+                for (Enumeration<AbstractButton> recorrerBotonesSexo = ventana.grupoSexo.getElements();
+                     recorrerBotonesSexo.hasMoreElements();) {
+                    AbstractButton botonAyudaSexo = recorrerBotonesSexo.nextElement();
+                    if (botonAyudaSexo.isSelected()) {
+                        if(botonAyudaSexo.getText() == "Masculino") {
+                            sexoElegido = 2;
+                        }
+                        else if(botonAyudaSexo.getText() == "Femenino"){
+                            sexoElegido = 1;
+                        }
+                    }
+                }
+                for (Enumeration<AbstractButton> recorrerBotonesFiltro = ventana.grupoPadecimiento.getElements();
+                     recorrerBotonesFiltro.hasMoreElements();) {
+                    AbstractButton botonAyudaFiltro = recorrerBotonesFiltro.nextElement();
+                    if (botonAyudaFiltro.isSelected()) {
+                        filtroElegido = botonAyudaFiltro.getText();
+                    }
+                }
 
+                System.out.println(estadoElegido);
+                System.out.println(sexoElegido);
+                System.out.println(filtroElegido);
+
+                QueryData queryData = new QueryData();
+
+                if(filtroElegido != "Edad") {
+                    queryData.numberQuery(estadoElegido, sexoElegido, filtroElegido);
+                }
+                else {
+                    queryData.arrayQuery(estadoElegido,sexoElegido);
+                }
+
+
+            } catch (Exception exce) {
+                System.out.println("Error en los eventos");
+            }
         }
+
     }
 }
