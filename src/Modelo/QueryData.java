@@ -11,8 +11,9 @@ public class QueryData {
     public QueryData(){
     }
 
-    public int numberQuery(String entidad, int sexo, String filtro){
-        int numeroQ = 0;
+    public HashMap numberQuery(String entidad, int sexo, String filtro){
+        HashMap<Integer,Integer> numeroQ = new HashMap<>();
+        //int numeroQ = 0;
 
         System.out.println("Entidad: "+entidad);
         System.out.println("Sexo: "+ sexo);
@@ -22,7 +23,6 @@ public class QueryData {
 
         for(int i=1;i<Entidad.hmEntidades.size();i++) {
             if(Entidad.hmEntidades.get(i)==entidad){
-                System.out.println(Entidad.hmEntidades.get(i));
                 claveEntidad=i;
             }
         }
@@ -40,7 +40,7 @@ public class QueryData {
 
             while(rs.next()){
                 System.out.println(rs.getInt(1));
-                numeroQ= rs.getInt(1);
+                numeroQ.put(1,rs.getInt(1));
             }
 
             conectarBD.DesconexionBD();
