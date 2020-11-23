@@ -19,6 +19,7 @@ public class Ventana extends JFrame {
 
         setLayout(new GridLayout(1,2));
 
+
         this.add(panelIzquierdo);
         this.add(panelDerecho);
     }

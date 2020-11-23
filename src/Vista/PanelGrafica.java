@@ -1,32 +1,44 @@
 package Vista;
 
+import javafx.scene.paint.Paint;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PanelGrafica {
     public String tituloGrafica;
-    public int alturaGrafica;
-    public String nombreDatos;
+    public HashMap<Integer,Integer> alturaGrafica;
+    public ArrayList<String> tituloBarras;
+    public String estado;
+    public int sexo;
+    public String filtro;
 
 
-    public PanelGrafica(String etiquetaTitulo, int numeroPersonas) {
-       this.tituloGrafica = etiquetaTitulo;
-       this.alturaGrafica = numeroPersonas;
-
-
+    public PanelGrafica(String nombreFiltro, HashMap<Integer,Integer> conteoPersonas,
+                        ArrayList<String> nombreDatos, String entidad, int genero, String filtro) {
+       this.tituloGrafica = nombreFiltro;
+       this.alturaGrafica = conteoPersonas;
+       this.tituloBarras = nombreDatos;
+       this.estado = entidad;
+       this.sexo = genero;
+       this.filtro = filtro;
     }
 
-    public JPanel createDataset(String etiquetaTitulo, int alturaGrafica) {
+    public JPanel createDataset(String tituloGrafica, HashMap<Integer,Integer> alturaGrafica, ArrayList<String> tituloBarras) {
         final String serie = "Series 1";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        dataset.addValue(alturaGrafica, serie, "");
+        for(int contador=0; contador<alturaGrafica.size();contador++) {
+            dataset.addValue(alturaGrafica.get(contador+1), serie, tituloBarras.get(contador));
+        }
 
-        JFreeChart grafico = ChartFactory.createBarChart(etiquetaTitulo, nombreDatos,
+        JFreeChart grafico = ChartFactory.createBarChart(tituloGrafica, null,
                 "Número de personas", dataset, PlotOrientation.VERTICAL, true,
                 true, false);
 
@@ -36,10 +48,43 @@ public class PanelGrafica {
         BarRenderer anchoMaximo = (BarRenderer) categoryPlot.getRenderer();
         anchoMaximo.setMaximumBarWidth(.1);
 
-
         ChartPanel chartPanel = new ChartPanel(grafico);
-   //     chartPanel.setPreferredSize(new Dimension(400,430));
+        chartPanel.setPreferredSize(new Dimension(440,330));
         return chartPanel;
     }
 
+    public JPanel panelEtiquetasGrafica(String estado, int sexo, String filtro) {
+        JLabel etiquetaEstado;
+        JLabel etiquetaSexo = null;
+        JLabel etiquetaFiltro;
+
+        Font fuenteEtiquetas = new Font("Calibri", 5, 16);
+
+        etiquetaEstado = new JLabel(estado + ".",SwingConstants.LEFT);
+
+
+        if (sexo == 1) {
+            etiquetaSexo = new JLabel("Población de Hombres.",SwingConstants.LEFT);
+        } else if (sexo == 2) {
+            etiquetaSexo = new JLabel("Población de Hombres.",SwingConstants.LEFT);
+        }
+        if (filtro == "Edad") {
+            etiquetaFiltro = new JLabel("Rango de edades.",SwingConstants.LEFT);
+        } else {
+            etiquetaFiltro = new JLabel("Número de casos con " + filtro + ".",SwingConstants.LEFT);
+        }
+
+        etiquetaEstado.setFont(fuenteEtiquetas);
+        etiquetaSexo.setFont(fuenteEtiquetas);
+        etiquetaFiltro.setFont(fuenteEtiquetas);
+
+        JPanel panelEtiquetas = new JPanel();
+        panelEtiquetas.setPreferredSize(new Dimension(400,80));
+        panelEtiquetas.setLayout(new GridLayout(3,0));
+        panelEtiquetas.add(etiquetaEstado);
+        panelEtiquetas.add(etiquetaSexo);
+        panelEtiquetas.add(etiquetaFiltro);
+        return panelEtiquetas;
+
+    }
 }

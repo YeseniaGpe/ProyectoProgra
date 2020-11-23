@@ -55,7 +55,7 @@ public class QueryData {
 
     public HashMap arrayQuery(String entidad, int sexo) {
 
-        HashMap<Integer, String> hashMapEdades = null;
+        HashMap<Integer, Integer> hashMapEdades = null;
         try {
             conectarBD = new ConexionBD();
             Connection conn = conectarBD.getConn();
@@ -89,7 +89,7 @@ public class QueryData {
                 ResultSet rs = qStatement.executeQuery();
 
                 while (rs.next()) {
-                    hashMapEdades.put(i, String.valueOf(rs.getInt(1)));
+                    hashMapEdades.put(i, rs.getInt(1));
                 }
             }
 
