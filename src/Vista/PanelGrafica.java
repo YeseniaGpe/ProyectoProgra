@@ -13,15 +13,14 @@ public class PanelGrafica {
     public String nombreDatos;
 
 
-    public PanelGrafica(String etiquetaTitulo, int numeroPersonas, String etiquetasBarras) {
+    public PanelGrafica(String etiquetaTitulo, int numeroPersonas) {
        this.tituloGrafica = etiquetaTitulo;
        this.alturaGrafica = numeroPersonas;
-       this.nombreDatos = etiquetasBarras;
 
 
     }
 
-    public JPanel createDataset(String etiquetaTitulo, int alturaGrafica, String nombreDatos) {
+    public JPanel createDataset(String etiquetaTitulo, int alturaGrafica) {
         final String serie = "Series 1";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
@@ -35,7 +34,7 @@ public class PanelGrafica {
 
         CategoryPlot categoryPlot = grafico.getCategoryPlot();
         BarRenderer anchoMaximo = (BarRenderer) categoryPlot.getRenderer();
-        anchoMaximo.setMaximumBarWidth(.2);
+        anchoMaximo.setMaximumBarWidth(.1);
 
 
         ChartPanel chartPanel = new ChartPanel(grafico);

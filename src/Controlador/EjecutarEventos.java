@@ -53,12 +53,12 @@ public class EjecutarEventos implements ActionListener{
                         filtroElegido = "Hipertension";
                     }
                     int ayudaQuery = queryData.numberQuery(estadoElegido, sexoElegido, filtroElegido);
-                    graficoBarras = new PanelGrafica(filtroElegido,ayudaQuery,null);
+                    graficoBarras = new PanelGrafica(filtroElegido,ayudaQuery);
                     Ventana.panelDerecho.updateUI();
                     Ventana.panelDerecho.removeAll();
                     Ventana.panelDerecho.repaint();
 
-                    Ventana.panelDerecho.add(graficoBarras.createDataset(filtroElegido,ayudaQuery,null));
+                    Ventana.panelDerecho.add(graficoBarras.createDataset(filtroElegido,ayudaQuery));
 
                 }
                 else {
