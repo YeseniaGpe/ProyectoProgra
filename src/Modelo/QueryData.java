@@ -11,8 +11,8 @@ public class QueryData {
     public QueryData(){
     }
 
-    public void numberQuery(String entidad, int sexo, String filtro){
-        String numeroQ = "0";
+    public int numberQuery(String entidad, int sexo, String filtro){
+        int numeroQ = 0;
 
         System.out.println("Entidad: "+entidad);
         System.out.println("Sexo: "+ sexo);
@@ -40,7 +40,7 @@ public class QueryData {
 
             while(rs.next()){
                 System.out.println(rs.getInt(1));
-                numeroQ= String.valueOf(rs.getInt(1));
+                numeroQ= rs.getInt(1);
             }
 
             conectarBD.DesconexionBD();
@@ -50,7 +50,7 @@ public class QueryData {
             conectarBD.DesconexionBD();
         }
 
-        //return numeroQ;
+        return numeroQ;
     }
 
     public void arrayQuery(String entidad, int sexo){

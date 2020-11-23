@@ -2,6 +2,8 @@ package Controlador;
 
 import Modelo.QueryData;
 import Vista.PanelControl;
+import Vista.PanelGrafica;
+import Vista.Ventana;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,7 @@ import java.util.Enumeration;
 
 public class EjecutarEventos implements ActionListener{
     PanelControl ventana;// = new PanelControl();
+    public static PanelGrafica graficoBarras;
 
     public EjecutarEventos(PanelControl ventana){
         this.ventana = ventana;
@@ -49,15 +52,18 @@ public class EjecutarEventos implements ActionListener{
                     if(filtroElegido=="Hipertensión") {
                         filtroElegido = "Hipertension";
                     }
-                    queryData.numberQuery(estadoElegido, sexoElegido, filtroElegido);
+                    int ayudaQuery = queryData.numberQuery(estadoElegido, sexoElegido, filtroElegido);
+                    graficoBarras = new PanelGrafica(filtroElegido,ayudaQuery,null);
+                    Ventana.panelDerecho.updateUI();
+                    Ventana.panelDerecho.removeAll();
+                    Ventana.panelDerecho.repaint();
+
+                    Ventana.panelDerecho.add(graficoBarras.createDataset(filtroElegido,ayudaQuery,null));
+
                 }
                 else {
                     queryData.arrayQuery(estadoElegido,sexoElegido);
                 }
-
-                System.out.println(estadoElegido);
-                System.out.println(sexoElegido);
-                System.out.println(filtroElegido);
 
 
             } catch (Exception exce) {

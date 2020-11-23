@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Ventana extends JFrame {
     public PanelControl panelIzquierdo;
-    public PanelGrafica graficoBarras;
+    public static JPanel panelDerecho;
 
 
     public Ventana() {
@@ -15,11 +15,11 @@ public class Ventana extends JFrame {
         setLocation(400,200);
 
         panelIzquierdo  = new PanelControl();
-        graficoBarras = new PanelGrafica();
+        panelDerecho = new JPanel();
 
         setLayout(new GridLayout(1,2));
 
         this.add(panelIzquierdo);
-        this.add(graficoBarras.createDataset());
+        this.add(panelDerecho);
     }
 }

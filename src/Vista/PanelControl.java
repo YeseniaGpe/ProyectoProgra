@@ -38,7 +38,6 @@ public class PanelControl extends JPanel {
 
         elegirEstado = new JComboBox<>();
         elegirEstado.setPreferredSize(new Dimension(350,20));
-        System.out.println("Entró al comboBox");
         try {
             elegirEstado.removeAllItems();
             for(int contador=0; contador<listaEstados.hmEntidades.size();contador++) {
