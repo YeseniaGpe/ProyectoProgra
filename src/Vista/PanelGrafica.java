@@ -1,6 +1,5 @@
 package Vista;
 
-import javafx.scene.paint.Paint;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -49,7 +48,7 @@ public class PanelGrafica {
         anchoMaximo.setMaximumBarWidth(.1);
 
         ChartPanel chartPanel = new ChartPanel(grafico);
-        chartPanel.setPreferredSize(new Dimension(440,330));
+        chartPanel.setPreferredSize(new Dimension(440,300));
         return chartPanel;
     }
 
@@ -58,13 +57,17 @@ public class PanelGrafica {
         JLabel etiquetaSexo = null;
         JLabel etiquetaFiltro;
 
+        //Requerido para presentar la fuente preferida para mejorar la experiencia del usuario.
         Font fuenteEtiquetas = new Font("Calibri", 5, 16);
 
+        if(estado.equals("ENTIDAD")){
+            estado = "Todas las entidades federativas";
+        }
         etiquetaEstado = new JLabel(estado + ".",SwingConstants.LEFT);
 
 
         if (sexo == 1) {
-            etiquetaSexo = new JLabel("Población de Hombres.",SwingConstants.LEFT);
+            etiquetaSexo = new JLabel("Población de Mujeres.",SwingConstants.LEFT);
         } else if (sexo == 2) {
             etiquetaSexo = new JLabel("Población de Hombres.",SwingConstants.LEFT);
         }
