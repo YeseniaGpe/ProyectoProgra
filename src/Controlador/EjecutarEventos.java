@@ -114,6 +114,7 @@ public class EjecutarEventos implements ActionListener{
                 Ventana.panelDerecho.removeAll();
                 Ventana.panelDerecho.repaint();
 
+
                 //Notifica al usuario que valide su selección.
                 JOptionPane.showMessageDialog(null,"Por favor, " +
                         "valida los datos seleccionados.","Atención", JOptionPane.WARNING_MESSAGE);

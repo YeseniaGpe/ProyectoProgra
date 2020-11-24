@@ -18,7 +18,6 @@ public class PanelGrafica {
     public int sexo;
     public String filtro;
 
-
     public PanelGrafica(String nombreFiltro, HashMap<Integer,Integer> conteoPersonas,
                         ArrayList<String> nombreDatos, String entidad, int genero, String filtro) {
        this.tituloGrafica = nombreFiltro;

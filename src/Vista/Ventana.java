@@ -7,7 +7,6 @@ public class Ventana extends JFrame {
     public PanelControl panelIzquierdo;
     public static JPanel panelDerecho;
 
-
     public Ventana() {
         super("COVID-19 en México");
         setSize(900,430);

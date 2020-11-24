@@ -10,5 +10,6 @@ public class Main {
 
         //Requerido para habilitar monitoreo de eventos.
         EjecutarEventos ejecutaEvento = new EjecutarEventos(ventanaPrincipal.panelIzquierdo);
+
     }
 }

@@ -20,7 +20,6 @@ public class PanelControl extends JPanel {
     public JRadioButton edad;
     public JButton botonMostrarGrafico;
 
-
     public PanelControl() {
         Entidad listaEstados = new Entidad();
 

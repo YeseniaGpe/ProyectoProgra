@@ -28,6 +28,7 @@ public class ConexionBD {
         }
     }
 
+
     //Método para obtener el ID de una conexión a BD existente.
     public Connection getConn() {
         return conn;

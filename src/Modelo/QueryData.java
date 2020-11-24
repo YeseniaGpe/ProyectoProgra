@@ -120,6 +120,7 @@ public class QueryData {
                     }
                 }
 
+
                 //Termina conexión con based de datos.
                 conectarBD.DesconexionBD();
 

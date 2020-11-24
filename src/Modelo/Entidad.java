@@ -67,6 +67,7 @@ public class Entidad {
             }
         }
 
+
         return claveEntidad;
     }
 }
