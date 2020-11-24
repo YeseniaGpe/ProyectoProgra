@@ -68,14 +68,16 @@ public class PanelGrafica {
         } else if (sexo == 2) {
             etiquetaSexo = new JLabel("Población de Hombres.",SwingConstants.LEFT);
         }
-        if (filtro == "Edad") {
+        if (filtro.equals("Edad")) {
             etiquetaFiltro = new JLabel("Rango de edades.",SwingConstants.LEFT);
         } else {
             etiquetaFiltro = new JLabel("Número de casos con " + filtro + ".",SwingConstants.LEFT);
         }
 
         etiquetaEstado.setFont(fuenteEtiquetas);
-        etiquetaSexo.setFont(fuenteEtiquetas);
+        if (etiquetaSexo != null) {
+            etiquetaSexo.setFont(fuenteEtiquetas);
+        }
         etiquetaFiltro.setFont(fuenteEtiquetas);
 
         JPanel panelEtiquetas = new JPanel();

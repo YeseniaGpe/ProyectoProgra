@@ -6,6 +6,7 @@ import Vista.PanelGrafica;
 import Vista.Ventana;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class EjecutarEventos implements ActionListener{
     public int sexoElegido = 0;
     public String filtroElegido = null;
     public QueryData queryData = new QueryData();
-    public HashMap<Integer,Integer> valoresTabla = new HashMap<>();
+    public HashMap valoresTabla = new HashMap<>();
     public ArrayList<String> nombresColumnas = new ArrayList<>();
 
     public EjecutarEventos(PanelControl ventana){
@@ -36,9 +37,9 @@ public class EjecutarEventos implements ActionListener{
                      recorrerBotonesSexo.hasMoreElements(); ) {
                     AbstractButton botonAyudaSexo = recorrerBotonesSexo.nextElement();
                     if (botonAyudaSexo.isSelected()) {
-                        if (botonAyudaSexo.getText() == "Masculino") {
+                        if (botonAyudaSexo.getText().equals("Masculino")) {
                             sexoElegido = 2;
-                        } else if (botonAyudaSexo.getText() == "Femenino") {
+                        } else if (botonAyudaSexo.getText().equals("Femenino")) {
                             sexoElegido = 1;
                         }
                     }
@@ -52,8 +53,8 @@ public class EjecutarEventos implements ActionListener{
                         filtroElegido = botonAyudaFiltro.getText();
                     }
                 }
-                if (filtroElegido != "Edad") {
-                    if (filtroElegido == "Hipertensión") {
+                if (!filtroElegido.equals("Edad")) {
+                    if (filtroElegido.equals("Hipertensión")) {
                         filtroElegido = "Hipertension";
                     }
                     nombresColumnas.clear();
@@ -73,20 +74,25 @@ public class EjecutarEventos implements ActionListener{
                     valoresTabla = queryData.arrayQuery(estadoElegido, sexoElegido);
                 }
 
-                if(estadoElegido=="ENTIDAD" || filtroElegido==null) {
+                if(estadoElegido.equals("ENTIDAD") || filtroElegido==null) {
                     nombresColumnas = null;
+                    Ventana.panelDerecho.add(graficoBarras.createDataset(filtroElegido,valoresTabla,nombresColumnas));
                 }
 
                 graficoBarras = new PanelGrafica(filtroElegido,valoresTabla,nombresColumnas,estadoElegido,sexoElegido,filtroElegido);
                 Ventana.panelDerecho.updateUI();
                 Ventana.panelDerecho.removeAll();
                 Ventana.panelDerecho.repaint();
-                Ventana.panelDerecho.add(graficoBarras.createDataset(filtroElegido,valoresTabla,nombresColumnas));
                 Ventana.panelDerecho.add(graficoBarras.panelEtiquetasGrafica(estadoElegido,sexoElegido,filtroElegido));
+                Ventana.panelDerecho.add(graficoBarras.createDataset(filtroElegido,valoresTabla,nombresColumnas));
+
 
 
             } catch (Exception exce) {
-                JOptionPane.showMessageDialog(null,"Por favor, valida los datos ingresados");
+                Ventana.panelDerecho.updateUI();
+                Ventana.panelDerecho.removeAll();
+                Ventana.panelDerecho.repaint();
+                JOptionPane.showMessageDialog(null,"Por favor, valida los datos ingresados","Atención", JOptionPane.WARNING_MESSAGE);
 
             }
         }

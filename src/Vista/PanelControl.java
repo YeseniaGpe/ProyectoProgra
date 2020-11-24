@@ -40,7 +40,7 @@ public class PanelControl extends JPanel {
         elegirEstado.setPreferredSize(new Dimension(350,20));
         try {
             elegirEstado.removeAllItems();
-            for(int contador=0; contador<listaEstados.hmEntidades.size();contador++) {
+            for(int contador = 0; contador< listaEstados.hmEntidades.size(); contador++) {
                 elegirEstado.addItem(listaEstados.hmEntidades.get(contador));
             }
         }catch (Exception exCombo) {

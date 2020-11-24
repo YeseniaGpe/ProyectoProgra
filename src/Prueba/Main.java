@@ -7,7 +7,7 @@ public class Main {
         Vista.Ventana ventanaPrincipal = new Vista.Ventana();
         ventanaPrincipal.setVisible(true);
 
-        //Agrega accion de mostrar grafica.
+        //Agrega acción de mostrar gráfica.
         EjecutarEventos ejecutaEvento = new EjecutarEventos(ventanaPrincipal.panelIzquierdo);
     }
 }
