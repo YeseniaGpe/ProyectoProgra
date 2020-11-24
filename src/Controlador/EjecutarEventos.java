@@ -6,7 +6,6 @@ import Vista.PanelGrafica;
 import Vista.Ventana;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,19 +33,18 @@ public class EjecutarEventos implements ActionListener{
             try {
                 estadoElegido = ventana.elegirEstado.getSelectedItem().toString();
                 for (Enumeration<AbstractButton> recorrerBotonesSexo = ventana.grupoSexo.getElements();
-                     recorrerBotonesSexo.hasMoreElements();) {
+                     recorrerBotonesSexo.hasMoreElements(); ) {
                     AbstractButton botonAyudaSexo = recorrerBotonesSexo.nextElement();
                     if (botonAyudaSexo.isSelected()) {
-                        if(botonAyudaSexo.getText() == "Masculino") {
+                        if (botonAyudaSexo.getText() == "Masculino") {
                             sexoElegido = 2;
-                        }
-                        else if(botonAyudaSexo.getText() == "Femenino"){
+                        } else if (botonAyudaSexo.getText() == "Femenino") {
                             sexoElegido = 1;
                         }
                     }
                 }
                 for (Enumeration<AbstractButton> recorrerBotonesFiltro = ventana.grupoPadecimiento.getElements();
-                     recorrerBotonesFiltro.hasMoreElements();) {
+                     recorrerBotonesFiltro.hasMoreElements(); ) {
 
                     AbstractButton botonAyudaFiltro = recorrerBotonesFiltro.nextElement();
 
@@ -54,35 +52,42 @@ public class EjecutarEventos implements ActionListener{
                         filtroElegido = botonAyudaFiltro.getText();
                     }
                 }
-                if(filtroElegido != "Edad") {
-                    if(filtroElegido=="Hipertensión") {
+                if (filtroElegido != "Edad") {
+                    if (filtroElegido == "Hipertensión") {
                         filtroElegido = "Hipertension";
                     }
                     nombresColumnas.clear();
                     nombresColumnas.add("");
                     valoresTabla = queryData.numberQuery(estadoElegido, sexoElegido, filtroElegido);
 
-                }
-                else {
+                } else {
                     int edad = 20;
                     String ayudaCrearEtiquetas;
                     nombresColumnas.clear();
-                    while (edad < 100) {
-                        ayudaCrearEtiquetas = edad + "-" + (edad + 10);
+                    while (edad < 70) {
+                        ayudaCrearEtiquetas = edad + "-" + (edad + 9);
                         edad = edad + 10;
                         nombresColumnas.add(ayudaCrearEtiquetas);
                     }
+                    nombresColumnas.add("70-100");
                     valoresTabla = queryData.arrayQuery(estadoElegido, sexoElegido);
                 }
+
+                if(estadoElegido=="ENTIDAD" || filtroElegido==null) {
+                    nombresColumnas = null;
+                }
+
                 graficoBarras = new PanelGrafica(filtroElegido,valoresTabla,nombresColumnas,estadoElegido,sexoElegido,filtroElegido);
                 Ventana.panelDerecho.updateUI();
                 Ventana.panelDerecho.removeAll();
                 Ventana.panelDerecho.repaint();
-                Ventana.panelDerecho.add(graficoBarras.panelEtiquetasGrafica(estadoElegido,sexoElegido,filtroElegido));
                 Ventana.panelDerecho.add(graficoBarras.createDataset(filtroElegido,valoresTabla,nombresColumnas));
+                Ventana.panelDerecho.add(graficoBarras.panelEtiquetasGrafica(estadoElegido,sexoElegido,filtroElegido));
+
 
             } catch (Exception exce) {
-                System.out.println("Error en los eventos");
+                JOptionPane.showMessageDialog(null,"Por favor, valida los datos ingresados");
+
             }
         }
 
