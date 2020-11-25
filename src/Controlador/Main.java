@@ -1,4 +1,4 @@
-package Prueba;
+package Controlador;
 
 import Controlador.EjecutarEventos;
 

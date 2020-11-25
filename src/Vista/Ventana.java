@@ -10,7 +10,8 @@ public class Ventana extends JFrame {
 
     //Construye el Frame
     public Ventana() {
-        super("COVID-19 en México");
+        super("COVID-19 en México :: Yesenia Oliva ::" +
+                " Edgar Luque :: Mauricio Flores :: Programación Orientada a Objetos :: Otoño 2020");
         setSize(900,460);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(true);
