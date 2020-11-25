@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PanelGrafica {
+    //Se crean los atributos de la clase
     public String tituloGrafica;
     public HashMap<Integer,Integer> alturaGrafica;
     public ArrayList<String> tituloBarras;
@@ -18,6 +19,7 @@ public class PanelGrafica {
     public int sexo;
     public String filtro;
 
+    //Constructor PanelGrafica
     public PanelGrafica(String nombreFiltro, HashMap<Integer,Integer> conteoPersonas,
                         ArrayList<String> nombreDatos, String entidad, int genero, String filtro) {
        this.tituloGrafica = nombreFiltro;
@@ -28,14 +30,20 @@ public class PanelGrafica {
        this.filtro = filtro;
     }
 
+    //Método que crea la gráfica de barras
     public JPanel createDataset(String tituloGrafica, HashMap<Integer,Integer> alturaGrafica, ArrayList<String> tituloBarras) {
         final String serie = "Series 1";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
+        //Genera las barras en la gráfica a partir del HashMap
         for(int contador=0; contador<alturaGrafica.size();contador++) {
             dataset.addValue(alturaGrafica.get(contador+1), serie, tituloBarras.get(contador));
         }
 
+        //Genera la gráfica a partir de los parámetros del filtro
+        if(filtro.equals("Ninguno")) {
+            tituloGrafica = "Datos sin filtro";
+        }
         JFreeChart grafico = ChartFactory.createBarChart(tituloGrafica, null,
                 "Número de personas", dataset, PlotOrientation.VERTICAL, true,
                 true, false);
@@ -46,18 +54,25 @@ public class PanelGrafica {
         BarRenderer anchoMaximo = (BarRenderer) categoryPlot.getRenderer();
         anchoMaximo.setMaximumBarWidth(.1);
 
+        //Crea un chartPanel y le añade el gráfico para que el método lo retorne
         ChartPanel chartPanel = new ChartPanel(grafico);
         chartPanel.setPreferredSize(new Dimension(440,300));
         return chartPanel;
     }
 
+    //Crea un panel que contiene la descripción de la gráfica
     public JPanel panelEtiquetasGrafica(String estado, int sexo, String filtro) {
         JLabel etiquetaEstado;
-        JLabel etiquetaSexo = null;
+        JLabel etiquetaSexo;
         JLabel etiquetaFiltro;
 
         //Requerido para presentar la fuente preferida para mejorar la experiencia del usuario.
         Font fuenteEtiquetas = new Font("Calibri", 5, 16);
+
+        //Dibuja los títulos y etiquetas necesarios para la descripción
+        if(filtro.equals("Ninguno")) {
+            tituloGrafica = "Datos sin filtro";
+        }
 
         if(estado.equals("ENTIDAD")){
             estado = "Todas las entidades federativas";
@@ -69,19 +84,23 @@ public class PanelGrafica {
             etiquetaSexo = new JLabel("Población de Mujeres.",SwingConstants.LEFT);
         } else if (sexo == 2) {
             etiquetaSexo = new JLabel("Población de Hombres.",SwingConstants.LEFT);
+        } else {
+            etiquetaSexo = new JLabel("Población de Hombres y Mujeres",SwingConstants.LEFT);
         }
+
         if (filtro.equals("Edad")) {
             etiquetaFiltro = new JLabel("Rango de edades.",SwingConstants.LEFT);
-        } else {
+        } else if(!filtro.equals("Ninguno")){
             etiquetaFiltro = new JLabel("Número de casos con " + filtro + ".",SwingConstants.LEFT);
+        } else {
+            etiquetaFiltro = new JLabel("Datos sin filtro");
         }
 
         etiquetaEstado.setFont(fuenteEtiquetas);
-        if (etiquetaSexo != null) {
-            etiquetaSexo.setFont(fuenteEtiquetas);
-        }
+        etiquetaSexo.setFont(fuenteEtiquetas);
         etiquetaFiltro.setFont(fuenteEtiquetas);
 
+        //Integra las etiquetas al panel
         JPanel panelEtiquetas = new JPanel();
         panelEtiquetas.setPreferredSize(new Dimension(400,80));
         panelEtiquetas.setLayout(new GridLayout(3,0));

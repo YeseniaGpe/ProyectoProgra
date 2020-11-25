@@ -26,14 +26,14 @@ public class QueryData {
         boolean bEntidad = false, bSexo = false;
 
         //Query a ejecutar.
-        String queryDatosCovid = "select count(*) from datoscovid where ", queryEdades;
+        String queryDatosCovid = "select count(*) from datoscovid ", queryEdades;
 
         //Obtiene clave de entidad.
         claveEntidad = Entidad.getClaveEntidad(entidad);
 
         //Valida dato de la entidad.
         if (claveEntidad != 0) {
-            queryDatosCovid = queryDatosCovid.concat("entidad = " + claveEntidad + " ");
+            queryDatosCovid = queryDatosCovid.concat(" where entidad = " + claveEntidad + " ");
 
             //Bandera de existencia de entidad. true -> Existe.
             bEntidad = true;
@@ -47,17 +47,13 @@ public class QueryData {
             //Existe condicion previa en clausula WHERE?
             if (bEntidad) {
                 //Se agrega AND a clausula WHERE
-                queryDatosCovid = queryDatosCovid.concat("and ");
+                queryDatosCovid = queryDatosCovid.concat("and sexo = " + sexo + " ");
+            }
+            else {
+                //Agrega query valor sexo.
+                queryDatosCovid = queryDatosCovid.concat("where sexo = " + sexo + " ");
             }
 
-            //Agrega query valor sexo.
-            queryDatosCovid = queryDatosCovid.concat("sexo = " + sexo + " ");
-        }
-
-        //Valida si existe alguna condicion en clausula WHERE.
-        if (bEntidad || bSexo) {
-            //Se agrega AND a clausula WHERE
-            queryDatosCovid = queryDatosCovid.concat("and ");
         }
 
         //Crea atributo hashmapResultado.
@@ -82,6 +78,13 @@ public class QueryData {
                     hashMapRangos.put(5, "60 and 69");
                     hashMapRangos.put(6, "70 and 100");
 
+                    if(bEntidad || bSexo) {
+                            queryDatosCovid = queryDatosCovid.concat(" and ");
+                    }
+                    else {
+                            queryDatosCovid = queryDatosCovid.concat(" where ");
+                    }
+
                     for (int i = 1; i < 7; i++) {
                         //Crea query de edades.
                         queryEdades = queryDatosCovid + "edad between " + hashMapRangos.get(i);
@@ -104,8 +107,26 @@ public class QueryData {
                         filtro = "Hipertension";
                     }
 
-                    //Completa clausula WHERE.
-                    queryDatosCovid = queryDatosCovid + filtro + " = 1;";
+             //       if(!filtro.equals("Ninguno")) {
+
+                        //Valida si existe alguna condicion en clausula WHERE.
+                        if (bEntidad || bSexo) {
+                            if(!filtro.equals("Ninguno")) {
+                                //Se agrega AND a clausula WHERE
+                                queryDatosCovid = queryDatosCovid.concat("and ");
+                            }
+                        }
+                        else {
+                            if(!filtro.equals("Ninguno")) {
+                                queryDatosCovid = queryDatosCovid.concat("where ");
+                            }
+
+                        }
+                        if(!filtro.equals("Ninguno")) {
+                            //Completa clausula WHERE.
+                            queryDatosCovid = queryDatosCovid + filtro + " = 1;";
+                        }
+
 
                     //Ejecuta query.
                     System.out.println(queryDatosCovid);

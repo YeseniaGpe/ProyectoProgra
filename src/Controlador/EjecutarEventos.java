@@ -5,8 +5,10 @@ import Vista.PanelControl;
 import Vista.PanelGrafica;
 import Vista.Ventana;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -35,12 +37,13 @@ public class EjecutarEventos implements ActionListener{
         this.ventana = ventana;
         this.ventana.botonMostrarGrafico.addActionListener(this);
         this.ventana.elegirEstado.addActionListener(this);
+        this.ventana.botonMostrarArchivo.addActionListener(this);
     }
 
     //Detecta eventos de componente VISTA.
     public void actionPerformed(ActionEvent e){
 
-        //Confirma evento de boton -Mostrar Gráfica- de VISTA.
+        //Confirma evento de botón -Mostrar Gráfica- de VISTA.
         if(e.getSource()== ventana.botonMostrarGrafico) {
             try {
                 //Recupera el nombre de la entidad seleccionada.
@@ -61,12 +64,13 @@ public class EjecutarEventos implements ActionListener{
                         } else if (sexo.equals("Femenino")) {
                             sexoElegido = 1;
                             sexo = "Mujeres";
+                        } else {
+                            sexoElegido = 0;
                         }
                     }
                 }
-
                 //Recupera el valor del filtro seleccionado.
-                for (Enumeration<AbstractButton> recorrerBotonesFiltro = ventana.grupoPadecimiento.getElements();
+                for (Enumeration<AbstractButton> recorrerBotonesFiltro = ventana.grupoFiltro.getElements();
                      recorrerBotonesFiltro.hasMoreElements();) {
 
                     AbstractButton botonAyudaFiltro = recorrerBotonesFiltro.nextElement();
@@ -118,6 +122,18 @@ public class EjecutarEventos implements ActionListener{
                 //Notifica al usuario que valide su selección.
                 JOptionPane.showMessageDialog(null,"Por favor, " +
                         "valida los datos seleccionados.","Atención", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
+        //Confirma evento de botón -Mostrar Conclusiones- de VISTA
+        if(e.getSource()== ventana.botonMostrarArchivo) {
+            File myfile;
+            System.out.println("Hola");
+            try{
+                myfile = new File("./conclusiones.pdf");
+                Desktop.getDesktop().open(myfile);
+            }catch(Exception exception){
+                JOptionPane.showMessageDialog(null,"Por favor, valida la ruta del archivo","Atención",JOptionPane.WARNING_MESSAGE);
             }
         }
     }

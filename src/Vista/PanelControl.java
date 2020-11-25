@@ -5,36 +5,48 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelControl extends JPanel {
+    //En esta sección declaramos atributos de la clase
     public JPanel segundoSubPanel;
     public JComboBox <String> elegirEstado;
     public ButtonGroup grupoSexo;
     public JLabel etiquetaSexo;
     public JRadioButton sexoFemenino;
     public JRadioButton sexoMasculino;
-    public JLabel etiquetaPadecimiento;
-    public ButtonGroup grupoPadecimiento;
+    public JRadioButton sexoAmbos;
+    public JLabel etiquetaFiltro;
+    public ButtonGroup grupoFiltro;
     public JRadioButton EPOC;
     public JRadioButton asma;
     public JRadioButton hipertension;
     public JRadioButton obesidad;
     public JRadioButton edad;
+    public JRadioButton ninguno;
     public JButton botonMostrarGrafico;
+    public JButton botonMostrarArchivo;
 
+    //Inicio del constructor de la clase
     public PanelControl() {
+
+        //LLamado a lista con los estados
         Entidad listaEstados = new Entidad();
 
+        //Declaración del panel y sus componentes
         JPanel panelVacio =new JPanel();
         panelVacio.setPreferredSize(new Dimension(350,20));
 
         botonMostrarGrafico = new JButton("Mostrar gráfico");
-        botonMostrarGrafico.setPreferredSize(new Dimension(300,20));
+        botonMostrarGrafico.setPreferredSize(new Dimension(160,20));
 
-        JPanel panelVacioDos =new JPanel();
-        panelVacioDos.setPreferredSize(new Dimension(350,20));
+        botonMostrarArchivo = new JButton("Mostrar conclusiones");
+        botonMostrarArchivo.setPreferredSize(new Dimension(160,20));
+
+        JPanel panelDos =new JPanel();
+        panelDos.setPreferredSize(new Dimension(420,30));
 
         segundoSubPanel = new JPanel();
         segundoSubPanel.setPreferredSize(new Dimension(350,300));
 
+        //Se llena la lista de estados en el ComboBox desde el HashMap hmEntidades
         elegirEstado = new JComboBox<>();
         elegirEstado.setPreferredSize(new Dimension(350,20));
         try {
@@ -43,68 +55,89 @@ public class PanelControl extends JPanel {
                 elegirEstado.addItem(listaEstados.hmEntidades.get(contador));
             }
         }catch (Exception exCombo) {
-            System.out.println("Error al leer los estados desde la base de datos");
+            JOptionPane.showMessageDialog(null,"Por favor, valida la conexión a la " +
+                    "base de datos","Atención",JOptionPane.WARNING_MESSAGE);
         }
 
-
+        //Requerido para dar el formato deseado a la tipografía
         Font fuenteTitulos = new Font("Arial", 1, 20);
         Font fuenteOpciones = new Font("Arial",4,14);
 
+        //Declara y añade botones de grupoSexo
         grupoSexo =new ButtonGroup();
+
         etiquetaSexo = new JLabel("Sexo");
         sexoFemenino = new JRadioButton("Femenino",false);
         sexoMasculino = new JRadioButton("Masculino",false);
+        sexoAmbos = new JRadioButton("Ambos",false);
 
         grupoSexo.add(sexoFemenino);
         grupoSexo.add(sexoMasculino);
+        grupoSexo.add(sexoAmbos);
 
-        grupoPadecimiento = new ButtonGroup();
-        etiquetaPadecimiento = new JLabel("Padecimiento");
+
+        //Declara y añade botones de grupoFiltro
+        grupoFiltro = new ButtonGroup();
+
+        etiquetaFiltro = new JLabel("Filtro");
         EPOC = new JRadioButton("EPOC",false);
         asma = new JRadioButton("Asma",false);
         hipertension = new JRadioButton("Hipertensión",false);
         obesidad = new JRadioButton("Obesidad",false);
         edad = new JRadioButton("Edad",false);
+        ninguno = new JRadioButton("Ninguno",false);
 
+        grupoFiltro.add(EPOC);
+        grupoFiltro.add(asma);
+        grupoFiltro.add(hipertension);
+        grupoFiltro.add(obesidad);
+        grupoFiltro.add(edad);
+        grupoFiltro.add(ninguno);
+
+        //Da formato a la tipografía de todos los elementos del panel
         etiquetaSexo.setFont(fuenteTitulos);
-        etiquetaPadecimiento.setFont(fuenteTitulos);
+        etiquetaFiltro.setFont(fuenteTitulos);
         sexoFemenino.setFont(fuenteOpciones);
         sexoMasculino.setFont(fuenteOpciones);
+        sexoAmbos.setFont(fuenteOpciones);
         EPOC.setFont(fuenteOpciones);
         asma.setFont(fuenteOpciones);
         hipertension.setFont(fuenteOpciones);
         obesidad.setFont(fuenteOpciones);
         edad.setFont(fuenteOpciones);
-        
-        grupoPadecimiento.add(EPOC);
-        grupoPadecimiento.add(asma);
-        grupoPadecimiento.add(hipertension);
-        grupoPadecimiento.add(obesidad);
-        grupoPadecimiento.add(edad);
+        ninguno.setFont(fuenteOpciones);
 
-        segundoSubPanel.setLayout(new GridLayout(9,2));
+        //Añade los elementos del primer SubPanel
+        segundoSubPanel.setLayout(new GridLayout(10,2));
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(etiquetaSexo);
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(sexoFemenino);
         segundoSubPanel.add(sexoMasculino);
+        segundoSubPanel.add(sexoAmbos);
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(new JLabel());
-        segundoSubPanel.add(etiquetaPadecimiento);
+        segundoSubPanel.add(new JLabel());
+        segundoSubPanel.add(etiquetaFiltro);
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(EPOC);
         segundoSubPanel.add(asma);
         segundoSubPanel.add(hipertension);
         segundoSubPanel.add(obesidad);
         segundoSubPanel.add(edad);
+        segundoSubPanel.add(ninguno);
         segundoSubPanel.add(new JLabel());
         segundoSubPanel.add(new JLabel());
 
+        //Añade los elementos del segundo SubPanel
+        panelDos.add(botonMostrarGrafico,BorderLayout.WEST);
+        panelDos.add(botonMostrarArchivo,BorderLayout.EAST);
+
+        //Añade los elementos del panelControl
         this.add(panelVacio,BorderLayout.NORTH);
         this.add(elegirEstado);
         this.add(segundoSubPanel,BorderLayout.CENTER);
-        this.add(botonMostrarGrafico);
-        this.add(panelVacioDos);
+        this.add(panelDos);
     }
 }
