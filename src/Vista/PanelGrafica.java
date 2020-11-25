@@ -56,7 +56,7 @@ public class PanelGrafica {
 
         //Crea un chartPanel y le añade el gráfico para que el método lo retorne
         ChartPanel chartPanel = new ChartPanel(grafico);
-        chartPanel.setPreferredSize(new Dimension(440,300));
+        chartPanel.setPreferredSize(new Dimension(440,330));
         return chartPanel;
     }
 
