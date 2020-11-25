@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 
 public class QueryData {
+    //Atributos de la clase QueryData
+    private HashMap<Integer, Integer> hashMapResultado;
+
     //Objeto ConexionBD utilizado por los métodos de esta clase.
     ConexionBD conectarBD;
     Connection conn;
@@ -18,9 +21,10 @@ public class QueryData {
     public QueryData(){
     }
 
-    public HashMap<Integer, Integer> arrayQuery(String entidad, int sexo, String filtro) {
+//    public HashMap<Integer, Integer> arrayQuery(String entidad, int sexo, String filtro) {
+    public void arrayQuery(String entidad, int sexo, String filtro) {
         //HashMap que contiene resultado de ejecutar query.
-        HashMap<Integer, Integer> hashMapResultado;
+        //HashMap<Integer, Integer> hashMapResultado;
 
         //Bandera de existencia. false -> No Existe.
         boolean bEntidad = false, bSexo = false;
@@ -63,9 +67,10 @@ public class QueryData {
             try {
                 //Conecta con base de datos.
                 conectarBD = new ConexionBD();
+                conectarBD.abreConexion();
 
                 //Obtiene ID de conexión.
-                conn = conectarBD.getConn();
+                conn = conectarBD.getConexion();
 
                 if (filtro.equals("Edad")) {
 
@@ -143,7 +148,7 @@ public class QueryData {
 
 
                 //Termina conexión con based de datos.
-                conectarBD.DesconexionBD();
+                conectarBD.cierraConexion();
 
             } catch(Exception e) {
                 //Notifica en línea de comando de una excepción.
@@ -151,10 +156,14 @@ public class QueryData {
                         "valida la conexión a la BD.","Atención", JOptionPane.WARNING_MESSAGE);
 
                 //En caso de que exista una conexión abierta a la BD aquí se cierra.
-                conectarBD.DesconexionBD();
+                conectarBD.cierraConexion();
             }
         }
 
+        //return hashMapResultado;
+    }
+
+    public HashMap<Integer, Integer> getHashMapResultado() {
         return hashMapResultado;
     }
 }

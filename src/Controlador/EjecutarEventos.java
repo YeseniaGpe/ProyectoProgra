@@ -29,9 +29,6 @@ public class EjecutarEventos implements ActionListener{
                     sexo = null;
     public int sexoElegido = 0;
 
-    //Instancias para interactuar con componente MODELO.
-    public QueryData queryData = new QueryData();
-
     //Constructor EjecutarEventos.
     public EjecutarEventos(PanelControl ventana){
         this.ventana = ventana;
@@ -42,7 +39,6 @@ public class EjecutarEventos implements ActionListener{
 
     //Detecta eventos de componente VISTA.
     public void actionPerformed(ActionEvent e){
-
         //Confirma evento de botón -Mostrar Gráfica- de VISTA.
         if(e.getSource()== ventana.botonMostrarGrafico) {
             try {
@@ -69,6 +65,7 @@ public class EjecutarEventos implements ActionListener{
                         }
                     }
                 }
+
                 //Recupera el valor del filtro seleccionado.
                 for (Enumeration<AbstractButton> recorrerBotonesFiltro = ventana.grupoFiltro.getElements();
                      recorrerBotonesFiltro.hasMoreElements();) {
@@ -102,7 +99,9 @@ public class EjecutarEventos implements ActionListener{
                 }
 
                 //Obtiene valores para presentar en gráfica.
-                valoresTabla = queryData.arrayQuery(estadoElegido, sexoElegido, filtroElegido);
+                QueryData covidData = new QueryData();
+                covidData.arrayQuery(estadoElegido,sexoElegido,filtroElegido);
+                valoresTabla = covidData.getHashMapResultado();
 
                 //Actualiza gráfica en panel derecho de VISTA.
                 graficoBarras = new PanelGrafica(filtroElegido,valoresTabla,nombresColumnas,estadoElegido,sexoElegido,filtroElegido);
@@ -118,7 +117,6 @@ public class EjecutarEventos implements ActionListener{
                 Ventana.panelDerecho.removeAll();
                 Ventana.panelDerecho.repaint();
 
-
                 //Notifica al usuario que valide su selección.
                 JOptionPane.showMessageDialog(null,"Por favor, " +
                         "valida los datos seleccionados.","Atención", JOptionPane.WARNING_MESSAGE);
@@ -128,7 +126,6 @@ public class EjecutarEventos implements ActionListener{
         //Confirma evento de botón -Mostrar Conclusiones- de VISTA
         if(e.getSource()== ventana.botonMostrarArchivo) {
             File myfile;
-            System.out.println("Hola");
             try{
                 myfile = new File("./conclusiones.pdf");
                 Desktop.getDesktop().open(myfile);

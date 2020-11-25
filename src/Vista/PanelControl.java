@@ -3,6 +3,7 @@ package Vista;
 import Modelo.Entidad;
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class PanelControl extends JPanel {
     //En esta sección declaramos atributos de la clase
@@ -26,10 +27,6 @@ public class PanelControl extends JPanel {
 
     //Inicio del constructor de la clase
     public PanelControl() {
-
-        //LLamado a lista con los estados
-        Entidad listaEstados = new Entidad();
-
         //Declaración del panel y sus componentes
         JPanel panelVacio =new JPanel();
         panelVacio.setPreferredSize(new Dimension(350,20));
@@ -51,8 +48,12 @@ public class PanelControl extends JPanel {
         elegirEstado.setPreferredSize(new Dimension(350,20));
         try {
             elegirEstado.removeAllItems();
-            for(int contador = 0; contador< listaEstados.hmEntidades.size(); contador++) {
-                elegirEstado.addItem(listaEstados.hmEntidades.get(contador));
+
+            HashMap <Integer,String> listaEntidades;
+            listaEntidades = Entidad.getHmEntidades();
+
+            for(int contador = 0; contador< listaEntidades.size(); contador++) {
+                elegirEstado.addItem(listaEntidades.get(contador));
             }
         }catch (Exception exCombo) {
             JOptionPane.showMessageDialog(null,"Por favor, valida la conexión a la " +

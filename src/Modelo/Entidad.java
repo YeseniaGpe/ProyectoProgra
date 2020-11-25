@@ -8,7 +8,10 @@ import java.util.HashMap;
 
 public class Entidad {
     //Atributo tipo HashMap con clave y nombre de entidad.
-    public static HashMap<Integer, String> hmEntidades;
+    private static HashMap<Integer, String> hmEntidades;
+
+    //Clave de entidad
+    private static int claveEntidad;
 
     //Atributo tipo ConexionBD para interactuar con la BD.
     ConexionBD conexionBD;
@@ -21,9 +24,10 @@ public class Entidad {
         try {
             //Abre conexión a la BD.
             conexionBD = new ConexionBD();
+            conexionBD.abreConexion();
 
             //Obtiene ID de conexión a la BD.
-            Connection conn = conexionBD.getConn();//ConexionBD.getConn();//conexionBD.getConn();
+            Connection conn = conexionBD.getConexion();//ConexionBD.getConn();//conexionBD.getConn();
 
             //Query para obtener lista de entidades.
             String queryEntidad = "SELECT Entidad_Clave, Entidad_Nombre FROM entidadcat";
@@ -41,7 +45,7 @@ public class Entidad {
             }
 
             //Termina conexion con BD.
-            conexionBD.DesconexionBD();
+            conexionBD.cierraConexion();
 
         }catch (Exception e){
             //Notifica en línea de comando de una excepción.
@@ -49,14 +53,17 @@ public class Entidad {
                     "valida la conexión a la BD.","Atención", JOptionPane.WARNING_MESSAGE);
 
             //En caso de que exista conexíón abierta a la BD aquí se cierra.
-            conexionBD.DesconexionBD();
+            conexionBD.cierraConexion();
         }
+    }
+
+    public static HashMap<Integer, String> getHmEntidades() {
+        new Entidad();
+        return hmEntidades;
     }
 
     //Método para obtener la clave de entidad a partir de su nombre.
     public static int getClaveEntidad(String entidad) {
-        int claveEntidad = 0;
-
         //Valida dato de la entidad.
         if(!entidad.equals("Entidad")){
             for (int i = 1; i < Entidad.hmEntidades.size(); i++) {
@@ -66,7 +73,6 @@ public class Entidad {
                 }
             }
         }
-
 
         return claveEntidad;
     }
