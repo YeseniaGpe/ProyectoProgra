@@ -6,21 +6,21 @@ import java.awt.*;
 
 public class PanelControl extends JPanel {
     //En esta sección declaramos atributos de la clase
-    public JPanel segundoSubPanel;
+    static JPanel segundoSubPanel;
     public JComboBox <String> elegirEstado;
     public ButtonGroup grupoSexo;
-    public JLabel etiquetaSexo;
-    public JRadioButton sexoFemenino;
-    public JRadioButton sexoMasculino;
-    public JRadioButton sexoAmbos;
-    public JLabel etiquetaFiltro;
+    static JLabel etiquetaSexo;
+    static JRadioButton sexoFemenino;
+    static JRadioButton sexoMasculino;
+    static JRadioButton sexoAmbos;
+    static JLabel etiquetaFiltro;
     public ButtonGroup grupoFiltro;
-    public JRadioButton EPOC;
-    public JRadioButton asma;
-    public JRadioButton hipertension;
-    public JRadioButton obesidad;
-    public JRadioButton edad;
-    public JRadioButton ninguno;
+    static JRadioButton EPOC;
+    static JRadioButton asma;
+    static JRadioButton hipertension;
+    static JRadioButton obesidad;
+    static JRadioButton edad;
+    static JRadioButton ninguno;
     public JButton botonMostrarGrafico;
     public JButton botonMostrarArchivo;
 

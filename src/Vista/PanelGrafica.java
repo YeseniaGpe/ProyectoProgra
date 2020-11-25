@@ -12,21 +12,21 @@ import java.util.HashMap;
 
 public class PanelGrafica {
     //Se crean los atributos de la clase
-    public String tituloGrafica;
-    public HashMap<Integer,Integer> alturaGrafica;
-    public ArrayList<String> tituloBarras;
-    public String estado;
-    public int sexo;
+    static String tituloGrafica;
+    static HashMap<Integer,Integer> alturaGrafica;
+    static ArrayList<String> tituloBarras;
+    static String estado;
+    static int sexo;
     public String filtro;
 
     //Constructor PanelGrafica
     public PanelGrafica(String nombreFiltro, HashMap<Integer,Integer> conteoPersonas,
                         ArrayList<String> nombreDatos, String entidad, int genero, String filtro) {
-       this.tituloGrafica = nombreFiltro;
-       this.alturaGrafica = conteoPersonas;
-       this.tituloBarras = nombreDatos;
-       this.estado = entidad;
-       this.sexo = genero;
+       tituloGrafica = nombreFiltro;
+       alturaGrafica = conteoPersonas;
+       tituloBarras = nombreDatos;
+       estado = entidad;
+       sexo = genero;
        this.filtro = filtro;
     }
 
