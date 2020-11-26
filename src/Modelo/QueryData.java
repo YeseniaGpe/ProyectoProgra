@@ -29,6 +29,8 @@ public class QueryData {
         //Bandera de existencia. false -> No Existe.
         boolean bEntidad = false, bSexo = false;
 
+        System.out.println("Entidad para query: " + entidad);
+
         //Query a ejecutar.
         String queryDatosCovid = "select count(*) from datoscovid ", queryEdades;
 

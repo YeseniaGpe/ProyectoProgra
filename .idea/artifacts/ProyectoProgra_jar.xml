@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProyectoProgra:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProyectoProgra_jar</output-path>
+    <root id="archive" name="ProyectoProgra.jar">
+      <element id="module-output" name="ProyectoProgra" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../jcommon-1.0.23/jcommon-1.0.23.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../jcommon-1.0.23/jfreechart-1.0.19.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../jcommon-1.0.23/jcommon-xml-1.0.23.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../jcommon-1.0.23/mysql-connector-java-5.1.23-bin.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

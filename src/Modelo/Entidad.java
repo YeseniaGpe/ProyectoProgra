@@ -64,8 +64,11 @@ public class Entidad {
 
     //Método para obtener la clave de entidad a partir de su nombre.
     public static int getClaveEntidad(String entidad) {
+        //Inicializa clave de entidad.
+        claveEntidad = 0;
+
         //Valida dato de la entidad.
-        if(!entidad.equals("Entidad")){
+        if(!entidad.equals("ENTIDAD")){
             for (int i = 1; i < Entidad.hmEntidades.size(); i++) {
                 //Encuentra la clave de la entidad a partir de su nombre.
                 if (Entidad.hmEntidades.get(i).equals(entidad)) {
